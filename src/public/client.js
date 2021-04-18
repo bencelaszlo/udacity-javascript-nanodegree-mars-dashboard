@@ -22,7 +22,8 @@ const App = async (state) => {
   return `
         ${Header(state)}
         ${await RoverImage(state)}
-        <footer></footer>
+        ${RoverData(state)}
+        <footer>Bence László - ${new Date().getFullYear()}</footer>
     `
 }
 
@@ -49,6 +50,21 @@ const Header = (state) => {
       `
 }
 
+const RoverData = (state) => {
+  if (!state.selectedRover) {
+    return ''
+  }
+
+  return `
+    <div id="databoard">
+      <div class="databoard-left">Launching Date:</div><div></div><div class="databoard-right">${state.selectedRover.landing_date}</div>
+      <div class="databoard-left">Launch Date:</div><div></div><div class="databoard-right">${state.selectedRover.launch_date}</div>
+      <div class="databoard-left">Name:</div><div></div><div class="databoard-right">${state.selectedRover.name}</div>
+      <div class="databoard-left">Status:</div><div></div><div class="databoard-right">${state.selectedRover.status}</div>
+    </div>
+  `
+}
+
 const RoverImage = async (state) => {
   const { roverImages, roverImageIndex, selectedRover, previousRover } = state
 
@@ -65,9 +81,9 @@ const RoverImage = async (state) => {
   if (roverImages) {
     return `
       <div class="wrapper">
-        <div id="left" onclick="swipeLeft(store)">Left</div>
+        <div class="active-button" onclick="swipeLeft(store)">Left</div>
         <div id="image" style="background-image: url('${roverImages[roverImageIndex].img_src}'); background-repeat: no-repeat; backgroud-clip: content-box; background-position: center center; background-size: cover;" ></div>
-        <div id="right" onclick="swipeRight(store)">Right</div>
+        <div class="active-button" onclick="swipeRight(store)">Right</div>
       </div>`
   }
 }
@@ -91,8 +107,6 @@ const swipeLeft = (state) => {
   if (roverImageIndex > 0) {
     roverImageIndex--
     updateStore(store, { roverImageIndex })
-  } else {
-    document.getElementById('left').style.backgroundColor = '#ccc'
   }
 }
 
@@ -102,8 +116,6 @@ const swipeRight = (state) => {
   if (roverImageIndex < roverImages.length - 1) {
     roverImageIndex++
     updateStore(store, { roverImageIndex })
-  } else {
-    document.getElementById('right').style.backgroundColor = '#ccc'
   }
 }
 
