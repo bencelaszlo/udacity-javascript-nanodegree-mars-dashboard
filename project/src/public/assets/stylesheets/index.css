@@ -1,24 +1,117 @@
-/* -------------------  MOBILE  --------------------- */
+:root {
+  --main-bg-color: #FCFFF7;
+  --bg-red: #BA3F1D;
+  --bg-orange: #DB7D11;
+  --bg-yellow: #FCBA04;
+}
 
 body {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 100%;
+  grid-template-columns: 100%;
+  margin: 0;
+  padding: 0;
   font-family: Arial;
   min-height: 100vh;
+  background-color: var(--main-bg-color);
 }
 
 header {
-  /* header styles */
+  grid-area: header;
+  display: grid;
+  grid-template-areas:
+    "title title title"
+    "tablink1 tablink2 tablink3" 
+  ;
+  background-color: var(--bg-red);
+  color: var(--bg-yellow);
+  font-size: xx-large;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-bottom: 0.75em;
+  margin-bottom: 1em;
 }
 
-main {
-  flex: 1;
-  padding: 20px;
+.tablink {
+  border: none;
+  background-color: var(--bg-yellow);
+  width: 99%;
+  height: 100%;
+  border-radius: 0.75em;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  font-size: large;
+  font-weight: bold;
+}
+
+.tablink:focus {
+  outline-style:solid;
+  outline-color: transparent;
+  box-shadow: 0 0 0 5px black;
+}
+
+#tablink1 {
+  grid-area: tablink1;
+}
+
+#tablink2 {
+  grid-area: tablink2;
+}
+
+#tablink3 {
+  grid-area: tablink3;
+}
+
+.tablink:hover{
+  background-color: var(--bg-orange);
+}
+
+#header-title {
+  grid-area: title;
+  text-align: center;
+  vertical-align: center;
 }
 
 footer {
   /* footer styles */
 }
+
+#root {
+  height: 100%;
+  display: grid;
+  grid-template-rows: min-content auto;
+  grid-template-areas:
+    "header"
+    "content"
+  ;
+}
+
+.wrapper {
+  grid-area: content;
+  display: grid;
+  height: 100%;
+  grid-template-columns: 1fr 90% 1fr;
+  grid-template-rows: 100%;
+  grid-gap: 10px;
+}
+
+#left {
+  background-color: red;
+}
+
+#image {
+  background-color: yellow;
+  min-height: 3em;
+}
+
+#right {
+  background-color: green;
+}
+
+.active-btn {}
+
+.active-btn:hover {}
+
+.passive-btn {}
 
 /* -------------------  TABLET  --------------------- */
 @media (min-width: 768px) {
