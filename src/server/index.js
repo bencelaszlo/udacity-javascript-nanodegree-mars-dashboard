@@ -3,6 +3,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const fetch = require('node-fetch')
 const path = require('path')
+const { List } = require('immutable')
 
 require('dotenv').config()
 
@@ -15,8 +16,17 @@ app.use(bodyParser.json())
 app.use('/', express.static(path.join(__dirname, '../public')))
 
 const filterRovers = (roversData) => {
-  const roverNames = ['curiosity', 'opportunity', 'spirit']
-  return roversData.filter(rover => roverNames.includes(rover.name.toLowerCase()))
+  const roverNames = List(['curiosity', 'opportunity', 'spirit'])
+
+  return roversData.filter(rover => roverNames.includes(rover.name.toLowerCase())).map(rover => {
+    return {
+      name: rover.name,
+      landingDate: rover.landing_date,
+      launchDate: rover.launch_date,
+      status: rover.status,
+      maxDate: rover.max_date
+    }
+  })
 }
 
 app.get('/rovers', async (req, res) => {

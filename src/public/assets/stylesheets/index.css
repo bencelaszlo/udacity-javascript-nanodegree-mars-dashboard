@@ -15,30 +15,27 @@ body {
   padding: 0;
   font-family: Arial;
   min-height: 100vh;
-  background-color: var(--main-bg-color);
+  background: conic-gradient(at top right, #FCBA04, #BA3F1D, #DB7D11);
 }
 
 header {
   grid-area: header;
   display: grid;
   grid-template-areas:
-    "title title title"
-    "tablink1 tablink2 tablink3" 
+    "title"
+    "headerbuttons" 
   ;
   background-color: var(--bg-red);
   color: var(--bg-yellow);
-  font-size: xx-large;
-  padding-left: 2em;
-  padding-right: 2em;
   padding-bottom: 0.75em;
   margin-bottom: 1em;
+  width: 100%;
 }
 
 .tablink {
   border: none;
   background-color: var(--bg-yellow);
-  width: 99%;
-  height: 100%;
+  color: black;
   border-radius: 0.75em;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
   font-size: large;
@@ -51,16 +48,12 @@ header {
   box-shadow: 0 0 0 5px black;
 }
 
-#tablink1 {
-  grid-area: tablink1;
-}
-
-#tablink2 {
-  grid-area: tablink2;
-}
-
-#tablink3 {
-  grid-area: tablink3;
+#header-buttons {
+  grid-area: headerbuttons;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .tablink:hover{
@@ -97,14 +90,12 @@ footer {
 }
 
 .wrapper {
-  padding-left: 1em;
-  padding-right: 1em;
   grid-area: slider;
   display: grid;
   height: 100%;
-  grid-template-columns: 1fr 90% 1fr;
+  min-height: 20em;
+  grid-template-columns: auto 1fr auto;
   grid-template-rows: 100%;
-  grid-gap: 10px;
 }
 
 #databoard {
@@ -126,45 +117,74 @@ footer {
   text-align: left;
 }
 
-/* #left {
-  background-color: red;
-} */
-
 #image {
-  /* background-color: yellow; */
   min-height: 3em;
 }
 
-/* #right {
-  background-color: green;
-} */
-
 .active-button {
-  border-bottom-left-radius: 200%;
-  border-top-left-radius: 200%;
-  background-color: var(--bg-red);
-  color: var(--bg-yellow);
-  vertical-align: middle;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 0; 
+  height: 0; 
+  border-top: 60px solid transparent;
+  border-bottom: 60px solid transparent;
 }
 
-.active-button:hover {
-  background-color: var(--bg-orange);
+#left {
+  border-right: 60px solid var(--bg-orange);
 }
 
-/* -------------------  TABLET  --------------------- */
-@media (min-width: 768px) {
-  /* use mobile */
+#left:hover {
+  border-right: 60px solid var(--bg-yellow);
 }
 
-/* -------------------  DESKTOP  -------------------- */
-
-@media (min-width: 1224px) {
-  /* use mobile */
+#left:active {
+  border-right: 60px solid var(--bg-yellow);
 }
 
-/* -------------------  LARGE SCREENS  -------------- */
+#right {
+  border-left: 60px solid var(--bg-orange);
+}
 
-@media (min-width: 1824px) {
-  /* use mobile */
+#right:hover {
+  border-left: 60px solid var(--bg-yellow);
+}
+
+#right:active {
+  border-left: 60px solid var(--bg-yellow);
+}
+
+@media (max-width: 768px) {
+  .active-button {
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+  }
+  
+  #left {
+    border-right: 30px solid var(--bg-orange);
+  }
+  
+  #left:hover {
+    border-right: 30px solid var(--bg-yellow);
+  }
+  
+  #left:active {
+    border-right: 30px solid var(--bg-yellow);
+  }
+  
+  #right {
+    border-left: 30px solid var(--bg-orange);
+  }
+  
+  #right:hover {
+    border-left: 30px solid var(--bg-yellow);
+  }
+  
+  #right:active {
+    border-left: 30px solid var(--bg-yellow);
+  }  
 }
