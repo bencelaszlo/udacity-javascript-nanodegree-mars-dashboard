@@ -56,7 +56,11 @@ header {
   justify-content: space-evenly;
 }
 
-.tablink:hover{
+.tablink:hover {
+  background-color: var(--bg-orange);
+}
+
+.tablink:active {
   background-color: var(--bg-orange);
 }
 
